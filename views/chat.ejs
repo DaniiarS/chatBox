@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <title>Real-time Chat</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #00203FFF;
+            margin: 0px;
+            padding-top: 90px;
+            padding-left: 100px;
+        }
+        /* Apply styles to make the container scrollable */
+        #chat-screen {
+          height: 72vh; /* Set a fixed height */
+          overflow: auto; /* Make the container scrollable if content overflows */
+          border: 1px solid #ccc; /* Optional: Add a border for visual clarity */
+          align-items: center;
+          justify-content: center;
+          width: 900px;
+          border: 1px solid gray;
+          border-radius: 40px;
+          background-color: rgb(254, 254, 254);
+          padding-top: 10px;
+        }
+
+        .sentMessage{
+            color: black;
+            font-size: 28px;
+        }
+
+        .header{
+            top: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            height: 70px;
+            background-color: #ADEFD1FF;
+            display: flex;
+            align-items: center;
+        }
+
+        .title{
+            font-size: 26px;
+            color:  #00203FFF;
+            font-weight: 900;
+            margin-left: 10px;
+        }
+        #input-container button{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            background-color: rgb(254, 254, 254);
+            border-radius: 6px;
+            border: none;
+            margin-left: 100px;
+            padding: 8px 16px 8px 16px;
+            white-space: nowrap;
+            
+            transition: opacity 0.3s;
+        }
+        .sendButton:hover{
+            opacity: 0.8;
+        }
+        .sendButton:active{
+            opacity: 0.5;
+        }
+
+        .input-msg{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            width: 600px;
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-left: 10px; 
+        }
+        .sentMessage{
+            margin-left: 20px;
+            margin-right: 40px;
+        }
+        .sidebar{
+            position: fixed;
+            top: 70px;
+            left: 0px;
+            bottom: 0px;
+            background-color: rgb(158, 220, 192);
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+        .sidebar h3, h4{
+            color: rgb(1, 20, 40);
+        }
+        .sidebar h4{
+            margin-bottom: 8px;
+            margin-top: 8px;
+            margin-left: 6px;
+        }
+        .sidebar h3{
+            font-size: 24px;
+            margin-top: 30px;
+        }
+      </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="title">
+            Dialog Generative Model for Menthal Therapy
+        </div>
+        <div class="sidebar">
+            <h3>Professor:</h3>
+            <h4>Min-Ho Lee</h4>
+            <h3>Students:</h3>
+            <h4>Askhat</h4>
+            <h4>Eldana</h4>
+            <h4>Makhabbat</h4>
+            <h4>Daniiar</h4>
+        </div>
+    </div>
+    <main>
+        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <!-- Scrollable container -->
+            <div id="chat-screen">
+                <!-- Elements to be placed in the scrollable container -->
+                <!-- Add more elements as needed -->
+            </div>
+
+            <div id="chatbox">
+                <div id="messages"></div>
+                <div id="input-container" style="display: flex; justify-content: center;  align-items: center;">
+                    <input class='input-msg' type="text" id="messageInput" placeholder="Type your message..." onkeydown="handleKeyPress(event)">
+                    <button class='sendButton' onclick="sendMessage()"> <%-sendButton %> </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function sendMessage(){
+                const inputField = document.getElementById("messageInput");
+
+                const newElement = document.createElement('h2');
+                newElement.textContent = "- " + inputField.value;
+                newElement.className = 'sentMessage';
+
+                const outputField = document.getElementById('chat-screen');
+
+                if(newElement.textContent != "- "){
+                    outputField.appendChild(newElement);
+                }
+                // Get the input element by its ID
+                var messageInput = document.getElementById('messageInput');
+
+                // Clear the content of the input field
+                messageInput.value = '';
+        }
+
+        function replyMessage(message){
+
+        }
+        
+        function handleKeyPress(event) {
+        // Check if the pressed key is Enter (key code 13)
+        if (event.keyCode === 13) {
+            // Prevent the form from being submitted (since Enter normally submits a form)
+            event.preventDefault();
+            
+            // Call the function to send the message
+            sendMessage();
+        }
+    }
+    </script>
+</body>
+</html>
